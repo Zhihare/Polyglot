@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/polyglot/static/css/main.f855e6bc.css",
+    "main.js": "/polyglot/static/js/main.f1bd1ac2.js",
+    "static/js/453.38395b88.chunk.js": "/polyglot/static/js/453.38395b88.chunk.js",
+    "static/media/logo.svg": "/polyglot/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/polyglot/index.html",
+    "main.f855e6bc.css.map": "/polyglot/static/css/main.f855e6bc.css.map",
+    "main.f1bd1ac2.js.map": "/polyglot/static/js/main.f1bd1ac2.js.map",
+    "453.38395b88.chunk.js.map": "/polyglot/static/js/453.38395b88.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.f1bd1ac2.js"
+  ]
+}
