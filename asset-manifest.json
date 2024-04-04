@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/Polyglot/static/css/main.2a6d1f4b.css",
-    "main.js": "/Polyglot/static/js/main.caa10e39.js",
-    "static/css/613.8045e4b1.chunk.css": "/Polyglot/static/css/613.8045e4b1.chunk.css",
-    "static/js/613.86f72ba9.chunk.js": "/Polyglot/static/js/613.86f72ba9.chunk.js",
-    "static/js/471.aecb8947.chunk.js": "/Polyglot/static/js/471.aecb8947.chunk.js",
-    "static/js/479.11e5d449.chunk.js": "/Polyglot/static/js/479.11e5d449.chunk.js",
-    "static/js/993.ca5da370.chunk.js": "/Polyglot/static/js/993.ca5da370.chunk.js",
-    "static/js/453.38395b88.chunk.js": "/Polyglot/static/js/453.38395b88.chunk.js",
-    "index.html": "/Polyglot/index.html",
-    "main.2a6d1f4b.css.map": "/Polyglot/static/css/main.2a6d1f4b.css.map",
-    "main.caa10e39.js.map": "/Polyglot/static/js/main.caa10e39.js.map",
-    "613.8045e4b1.chunk.css.map": "/Polyglot/static/css/613.8045e4b1.chunk.css.map",
-    "613.86f72ba9.chunk.js.map": "/Polyglot/static/js/613.86f72ba9.chunk.js.map",
-    "471.aecb8947.chunk.js.map": "/Polyglot/static/js/471.aecb8947.chunk.js.map",
-    "479.11e5d449.chunk.js.map": "/Polyglot/static/js/479.11e5d449.chunk.js.map",
-    "993.ca5da370.chunk.js.map": "/Polyglot/static/js/993.ca5da370.chunk.js.map",
-    "453.38395b88.chunk.js.map": "/Polyglot/static/js/453.38395b88.chunk.js.map"
+    "main.css": "/polyglot/static/css/main.1fbf8b27.css",
+    "main.js": "/polyglot/static/js/main.46585470.js",
+    "static/css/613.8045e4b1.chunk.css": "/polyglot/static/css/613.8045e4b1.chunk.css",
+    "static/js/613.e70c96ca.chunk.js": "/polyglot/static/js/613.e70c96ca.chunk.js",
+    "static/js/471.aecb8947.chunk.js": "/polyglot/static/js/471.aecb8947.chunk.js",
+    "static/js/479.11e5d449.chunk.js": "/polyglot/static/js/479.11e5d449.chunk.js",
+    "static/js/993.ca5da370.chunk.js": "/polyglot/static/js/993.ca5da370.chunk.js",
+    "static/js/453.38395b88.chunk.js": "/polyglot/static/js/453.38395b88.chunk.js",
+    "index.html": "/polyglot/index.html",
+    "main.1fbf8b27.css.map": "/polyglot/static/css/main.1fbf8b27.css.map",
+    "main.46585470.js.map": "/polyglot/static/js/main.46585470.js.map",
+    "613.8045e4b1.chunk.css.map": "/polyglot/static/css/613.8045e4b1.chunk.css.map",
+    "613.e70c96ca.chunk.js.map": "/polyglot/static/js/613.e70c96ca.chunk.js.map",
+    "471.aecb8947.chunk.js.map": "/polyglot/static/js/471.aecb8947.chunk.js.map",
+    "479.11e5d449.chunk.js.map": "/polyglot/static/js/479.11e5d449.chunk.js.map",
+    "993.ca5da370.chunk.js.map": "/polyglot/static/js/993.ca5da370.chunk.js.map",
+    "453.38395b88.chunk.js.map": "/polyglot/static/js/453.38395b88.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2a6d1f4b.css",
-    "static/js/main.caa10e39.js"
+    "static/css/main.1fbf8b27.css",
+    "static/js/main.46585470.js"
   ]
 }
