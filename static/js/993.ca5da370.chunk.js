@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpolyglot=self.webpackChunkpolyglot||[]).push([[993],{993:(e,l,s)=>{s.r(l),s.d(l,{default:()=>a});s(43);var t=s(579);const a=()=>(0,t.jsx)("div",{children:"FavoritePage"})}}]);
+//# sourceMappingURL=993.ca5da370.chunk.js.map
