@@ -7,9 +7,9 @@ import { getFilterTeachers, getTeachersList, getTeachersListPag } from './teache
 export interface TeachersState {
     teachers: any[];
     favorites: any[];
-  isLoading: boolean;
-  error: string | null;
-  filter: string| null;
+  	isLoading: boolean;
+  	error: string | null;
+  	filter: string| null;
     loadpage: number;
     modal: boolean;
     modalData: any
@@ -81,7 +81,7 @@ const teachersSlice = createSlice({
 
 	extraReducers: builder => {
 		builder
-			.addCase(getTeachersListPag .fulfilled, (state, action) => {
+			.addCase(getTeachersListPag.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.error = null;
 				state.teachers = state.teachers.concat(action.payload);
