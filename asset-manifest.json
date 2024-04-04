@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Polyglot/static/css/main.1fbf8b27.css",
-    "main.js": "/Polyglot/static/js/main.6e679acd.js",
+    "main.js": "/Polyglot/static/js/main.81b7972a.js",
     "static/css/613.8045e4b1.chunk.css": "/Polyglot/static/css/613.8045e4b1.chunk.css",
     "static/js/613.e70c96ca.chunk.js": "/Polyglot/static/js/613.e70c96ca.chunk.js",
     "static/js/471.aecb8947.chunk.js": "/Polyglot/static/js/471.aecb8947.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/453.38395b88.chunk.js": "/Polyglot/static/js/453.38395b88.chunk.js",
     "index.html": "/Polyglot/index.html",
     "main.1fbf8b27.css.map": "/Polyglot/static/css/main.1fbf8b27.css.map",
-    "main.6e679acd.js.map": "/Polyglot/static/js/main.6e679acd.js.map",
+    "main.81b7972a.js.map": "/Polyglot/static/js/main.81b7972a.js.map",
     "613.8045e4b1.chunk.css.map": "/Polyglot/static/css/613.8045e4b1.chunk.css.map",
     "613.e70c96ca.chunk.js.map": "/Polyglot/static/js/613.e70c96ca.chunk.js.map",
     "471.aecb8947.chunk.js.map": "/Polyglot/static/js/471.aecb8947.chunk.js.map",
@@ -20,6 +20,6 @@
   },
   "entrypoints": [
     "static/css/main.1fbf8b27.css",
-    "static/js/main.6e679acd.js"
+    "static/js/main.81b7972a.js"
   ]
 }
