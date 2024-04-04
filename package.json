@@ -2,7 +2,7 @@
   "name": "polyglot",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Zhihare.github.io/polyglot/",
+  "homepage": "https://Zhihare.github.io/Polyglot/",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
     "@testing-library/jest-dom": "^5.17.0",
