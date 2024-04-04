@@ -1,22 +1,50 @@
 import React, { useState } from 'react'
 import { ButtonFormContainer, StyledPopup } from './LoginForm.styled';
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../Redax/store';
+import { setUser } from '../../Redax/Auth/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {}
 
 const RegistrationForm: React.FC = (props: Props) => {
+    const dispatch: AppDispatch = useDispatch();
+    const navigate = useNavigate();
+     const auth = getAuth();
+    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [open, setOpen] = useState(false);
+
+
     const closeModal = () => setOpen(false);
+   
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        console.log('Email:', email);
-        console.log('Password:', password);
-        console.log('Name:', name);
-    };
-
+    event.preventDefault();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        user.getIdToken()
+            .then(accessToken => {
+                dispatch(setUser({
+                    id: user.uid,
+                    email: user.email,
+                    name: user.displayName, // Ensure displayName is correctly set
+                    token: accessToken, 
+                }))
+                updateProfile(user, {
+      displayName: name // Укажите имя пользователя здесь
+    })
+                navigate('/');
+                closeModal();
+            })
+            .catch(() => {" Invalid user"});
+      })
+        
+     .catch(() => {" Invalid user"});
+};
 
 
       
@@ -27,8 +55,8 @@ const RegistrationForm: React.FC = (props: Props) => {
       </button>
       <StyledPopup open={open} closeOnDocumentClick onClose={closeModal}>
         <div className="modal">
-          <a className="close" onClick={closeModal}>
-            &times;</a>
+          <button className="close" onClick={closeModal}>
+            &times;</button>
           <div>
             <h2>Registration</h2>
                       <p>Thank you for your interest in our platform! In order to register, we need some information.

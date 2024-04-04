@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../Redax/Auth/authSelector';
 
 interface AuthSelector {
-    isAuth: boolean;
+    name: string;
     email: string;
     token: string;
     id: string;
@@ -11,12 +11,13 @@ interface AuthSelector {
 export const useAuth = () => {
     const userData = useSelector(selectUser) as AuthSelector | undefined;
 
-    const { email = '', token = '', id = '' } = userData || {};
+    const { email = '', token = '', id = '', name = '' } = userData || {};
 
     return {
-        isAuth: !!email, // This will return false if email is empty or undefined
+        isAuth: !!email,
         email,
         token,
-        id
+        id,
+        name,
     };
 };

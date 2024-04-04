@@ -22,10 +22,16 @@ const teachersConfig = {
 	whitelist: ['teachers', 'favorites'],
 };
 
+const usersConfig = {
+	key: 'user',
+	storage,
+	whitelist: ['email'],
+};
+
 
 const rootReducer = combineReducers({
 	teachers: persistReducer(teachersConfig, teachersReducer),
-	user: userReducer,
+	user: persistReducer(usersConfig, userReducer),
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

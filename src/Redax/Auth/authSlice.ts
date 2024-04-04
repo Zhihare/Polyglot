@@ -1,10 +1,11 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 
 
 
 
 export interface UserState {
+    name: string | null;
     email: string | null;
     token: string| null;
     id: string | null;
@@ -14,7 +15,8 @@ export interface UserState {
 const initialState: UserState = {
     email: null,
     token: null,
-    id: null
+    id: null,
+    name: null,
 };
 
 const userSlice = createSlice({
@@ -26,14 +28,15 @@ const userSlice = createSlice({
             state.email = action.payload.email;
             state.token = action.payload.token;
             state.id = action.payload.id;
+            state.name = action.payload.name;
 		},
 
         deleteUser(state) {
             state.email = null;
             state.token = null;
             state.id = null;
-        }
-
+            state.name = null;
+        },
 			},
 });
 
