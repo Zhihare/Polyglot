@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(
 root.render(
  <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <BrowserRouter basename='/Polyglot'>
+      <BrowserRouter basename='/polyglot'>
         <App />
       </BrowserRouter>
     </PersistGate>

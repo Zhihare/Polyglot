@@ -1,9 +1,9 @@
 :root {
   
-  --button-color: #3470FF;
-  --button-color-hover: #0B44CD;
-  --text-color-grey: rgba(18, 20, 23, 0.5);
-  --text-color: rgb(18, 20, 23);
+  --button-color: #9FBAAE;
+  --button-color-hover: #CBDED3;
+  --text-color-grey: #8A8A89;
+  --text-color: #121417;
   --text-color-active: rgb(52, 112, 255);
 }
 

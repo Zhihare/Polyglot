@@ -1,6 +1,6 @@
 import React, {useState } from 'react'
 import 'reactjs-popup/dist/index.css';
-import { ButtonFormContainer, StyledPopup } from './LoginForm.styled';
+import { ButtonFormContainer, ButtonModalContainer, LoginRegistrationForm, Modal, StyledPopup } from './LoginForm.styled';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../Redax/Auth/authSlice';
@@ -54,15 +54,15 @@ const LoginForm: React.FC = () => {
           </button>
           
       <StyledPopup open={open} closeOnDocumentClick onClose={closeModal}>
-        <div className="modal">
+        <Modal className="modal">
           <button className="close" onClick={closeModal}>
             &times;</button>
           <div>
             <h2>Log In</h2>
             <p>Welcome back! Please enter your credentials to access your account and continue your search for an teacher.</p>
-            <form onSubmit={handleSubmit}>
+            <LoginRegistrationForm onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="email">Email:</label>
+                    <label htmlFor="email">Email</label>
                     <input
                         type="email"
                         id="email"
@@ -72,7 +72,7 @@ const LoginForm: React.FC = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="password">Password:</label>
+                    <label htmlFor="password">Password</label>
                     <input
                         type="password"
                         id="password"
@@ -81,11 +81,13 @@ const LoginForm: React.FC = () => {
                         required
                     />
                           </div>
-                <GoogleAuth/>
-                <button type="submit">Log In</button>
-            </form>
+                <ButtonModalContainer>
+                               <button type="submit">Log In</button>
+                               <GoogleAuth/>    
+                          </ButtonModalContainer>
+            </LoginRegistrationForm>
         </div>
-        </div>
+        </Modal>
       </StyledPopup>
     </ButtonFormContainer>
     )

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ButtonFormContainer, StyledPopup } from './LoginForm.styled';
+import { ButtonFormContainer, ButtonModalContainer, LoginRegistrationForm, Modal, StyledPopup } from './LoginForm.styled';
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../Redax/store';
@@ -35,7 +35,7 @@ const RegistrationForm: React.FC = (props: Props) => {
                     token: accessToken, 
                 }))
                 updateProfile(user, {
-      displayName: name // Укажите имя пользователя здесь
+      displayName: name 
     })
                 navigate('/');
                 closeModal();
@@ -54,17 +54,17 @@ const RegistrationForm: React.FC = (props: Props) => {
         Registration
       </button>
       <StyledPopup open={open} closeOnDocumentClick onClose={closeModal}>
-        <div className="modal">
+        <Modal className="modal">
           <button className="close" onClick={closeModal}>
             &times;</button>
           <div>
             <h2>Registration</h2>
                       <p>Thank you for your interest in our platform! In order to register, we need some information.
                           Please provide us with the following information</p>
-                      <form onSubmit={handleSubmit}>
+                      <LoginRegistrationForm onSubmit={handleSubmit}>
                           
                 <div>
-                <label htmlFor="name">Name:</label>
+                <label htmlFor="name">Name</label>
                     <input
                         type="name"
                         id="name"
@@ -74,7 +74,7 @@ const RegistrationForm: React.FC = (props: Props) => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="email">Email:</label>
+                    <label htmlFor="email">Email</label>
                     <input
                         type="email"
                         id="email"
@@ -84,7 +84,7 @@ const RegistrationForm: React.FC = (props: Props) => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="password">Password:</label>
+                    <label htmlFor="password">Password</label>
                     <input
                         type="password"
                         id="password"
@@ -92,11 +92,14 @@ const RegistrationForm: React.FC = (props: Props) => {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-                </div>
-                <button type="submit">Log In</button>
-            </form>
+                          </div>
+                          <ButtonModalContainer>
+                              <button type="submit">Sign Up</button>
+                          </ButtonModalContainer>
+                
+            </LoginRegistrationForm>
         </div>
-        </div>
+        </Modal>
       </StyledPopup>
     </ButtonFormContainer>
     )
