@@ -1,66 +1,45 @@
-import styled from "styled-components";
+	import styled from "styled-components";
 
 
 export const HeaderSection = styled.header`
-
-@media(max-width: 600px){
-	background-color: white;
-	border-top: 1px solid grey;
-	position: fixed;
-    z-index: 10;
-    bottom: 0;
-    left: 0;
-	height: 60px;
-width:100%;
 display: flex;
-justify-content:center;
+justify-content: space-between;
 align-items: center;
-color: black;
+flex-wrap: wrap;
 
-	a{
-			text-decoration: none;
-	 		transition-duration: .8s;
-			color:black;
-		}
-}
-	
-
-
-@media(min-width: 600px){
-	display: flex;
-    justify-content: space-between;
-	max-width: 1200px;
+@media(min-width: 700px){
+	max-width: 1184px;
 	margin-right: auto;
     margin-left: auto;
 	color: var(----button-color-hover);
-	padding: 15px 0; 
 }
 `
 
 export const LogoConteiner = styled.div`
-@media(max-width: 600px){
-	display: none;
-}
-margin-left: 20px;
+display: flex;
+align-items: center;
+gap: 5px;
+
 
 p{
-	font-family: "Poppins", sans-serif;
-    font-weight: 200;
-	color: black;
-	font-size: 28px;
-	padding: 5px; 
-	border: 1px solid #1a1a1a;
-  border-radius: 8px;
-  box-sizing: border-box;
+    font-weight: 500;
+	color: var(--text-color);
+	font-size: 20px;
+  	box-sizing: border-box;
 }
 
-span{
-	color: var(--button-color);
-	border-radius: 8px;
-
-	
+img{
+	width: 28px;
+	height: 28px;
 }
 
+
+`
+
+export const HeaderWrapper = styled.div`
+@media(max-width: 700px){
+	display: none;
+}
 `
 
 export const Navigation = styled.div`
@@ -69,9 +48,8 @@ justify-content: center;
 align-items: center;
 
 
-@media(max-width: 600px){
-	margin: auto;
-	
+@media(max-width: 700px){
+display: none;
 }
 
 `
@@ -79,5 +57,32 @@ align-items: center;
 export const NavigationButton = styled.div`
 display: flex;
 align-items: center;
-gap: 20px;
+gap: 16px;
+
+p{	
+	position: relative;
+	border-radius: 2px;
+	font-weight: 500;
+	font-style: italic;
+}
+
+p::before{
+	content: "";
+	position: absolute;
+	bottom: 0;
+    width: 100%;
+	transform: translate(5%, -55%);
+    height: 10px;
+    background: var(--button-color-hover);
+	z-index: -1;
+	border-radius: 3px;
+}
+
+@media(max-width: 700px){
+	flex-direction: column;
+	gap: 10px;
+	padding-top: 10px;
+	margin-top: 20px;
+	border-top: 1px solid var(--text-color-grey);
+}
 `

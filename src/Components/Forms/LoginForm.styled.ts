@@ -2,26 +2,84 @@ import Popup from "reactjs-popup";
 import styled from "styled-components";
 
 export const ButtonFormContainer = styled.div`
+    button{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        background-color: transparent;
+
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 20px;
+
+        svg{
+            color: var(--button-color);
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    button:hover{
+        color: var(--button-color-hover);   
+        svg{
+            color: var(--button-color-hover);
+        }
+    }
+
+
+    
+    button.registration{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        height: 48px;
+        padding: 14px 39px;
+
+        border-radius: 12px;
+        background: rgb(18, 20, 23);
+        color: #ffffff;
+    }
+
+    button.registration:hover{
+        background: var(--button-color-hover);
+        color: #000000
+      
+    }
+
+
 
 `
 
 export const StyledPopup = styled(Popup)`
- 
+
+
   &-overlay {
   
   }
-
+@media(max-width: 700px){
   &-content {
         max-width: 566px;
+        padding: 0;   
+        min-width: 100%;
+        border-radius: 0;
+    }  
+     }
+  &-content {
+        max-width: 566px;
+        padding: 0;   
         border-radius: 30px;
-        padding: 0;
-  }
+       
+    }  
+
 `
 
 export const Modal = styled.div`
         padding: 64px;
         position: relative;
-
+ overflow-y: scroll;
         button.close{
                 position: absolute;
                 display: flex;

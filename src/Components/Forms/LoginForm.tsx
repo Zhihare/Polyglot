@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { AppDispatch } from '../../Redax/store';
 import GoogleAuth from '../googleAuth/googleAuth';
 
+import { CiLogin } from "react-icons/ci";
 // type Props = {}
 
 const LoginForm: React.FC = () => {
@@ -19,6 +20,7 @@ const LoginForm: React.FC = () => {
     const [password, setPassword] = useState('');
     const [open, setOpen] = useState(false);
     const closeModal = () => setOpen(false);
+
 
    
 
@@ -50,10 +52,10 @@ const LoginForm: React.FC = () => {
   return (
       <ButtonFormContainer>
       <button type="button" className="button" onClick={() => setOpen(o => !o)}>
-        Log In
+        <CiLogin />Log In
           </button>
           
-      <StyledPopup open={open} closeOnDocumentClick onClose={closeModal}>
+      <StyledPopup open={open} className='myPop' closeOnDocumentClick onClose={closeModal}>
         <Modal className="modal">
           <button className="close" onClick={closeModal}>
             &times;</button>

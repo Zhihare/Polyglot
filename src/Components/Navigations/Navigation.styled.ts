@@ -16,4 +16,11 @@ export const NavigationNav = styled.nav`
 		color: blue;
 		border-color: blue;		
 	}
+
+	@media(max-width: 700px){
+		flex-direction: column;
+		gap: 10px;
+		align-items: flex-start;
+		
+		}
 `

@@ -1,44 +1,40 @@
 import React from 'react'
 
 
-import { HeaderSection, LogoConteiner, Navigation, NavigationButton } from './header.styled'
+import { HeaderSection, HeaderWrapper, LogoConteiner, Navigation} from './header.styled'
 import { Navigator } from '../Navigations/Navigation';
-import LoginForm from '../Forms/LoginForm';
-import RegistrationForm from '../Forms/RegistrationForm';
-import { useDispatch} from 'react-redux';
-import { AppDispatch } from '../../Redax/store';
-import { deleteUser} from '../../Redax/Auth/authSlice';
-import { useAuth } from '../../hooks/auth';
+import { Link } from 'react-router-dom';
+
+
+import BurgerMenu from '../Burger-menu/BurgerMenu';
+import HeaderButton from './headerButton';
+
+
 
 
 
 const Header = () => {
-	const dispatch: AppDispatch = useDispatch();
-	const { isAuth, name } = useAuth();
-
-	const handleLogOur = () => {
-		dispatch(deleteUser());
-	}
+	
 
 	return (
         <HeaderSection>
-            <LogoConteiner><p>Rental<span>Cars</span></p></LogoConteiner>
+			
+				 <Link to="/">
+				<LogoConteiner>
+				<img src={require('../Img/image.png')} alt="ukrain" />
+				<p>LearnLingo</p>
+				</LogoConteiner>
+			</Link>
+			<BurgerMenu/>
+		
 			<Navigation>
 				<Navigator></Navigator>
 			</Navigation>
-			<NavigationButton>
-				{isAuth ?
-					<>
-					<p>{name}</p>
-						<button type="button" onClick={handleLogOur}>Log Out</button>
-						</>:
-					<>
-					<LoginForm/>
-					<RegistrationForm />
-					</>
-				}
-				</NavigationButton>
+			<HeaderWrapper>
+			<HeaderButton/>
+			</HeaderWrapper>
 		</HeaderSection>
+	
 	)
 }
 

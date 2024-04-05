@@ -50,7 +50,7 @@ const RegistrationForm: React.FC = (props: Props) => {
       
   return (
        <ButtonFormContainer>
-      <button type="button" className="button" onClick={() => setOpen(o => !o)}>
+      <button type="button" className="button registration" onClick={() => setOpen(o => !o)}>
         Registration
       </button>
       <StyledPopup open={open} closeOnDocumentClick onClose={closeModal}>
