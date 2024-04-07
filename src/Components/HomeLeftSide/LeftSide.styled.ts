@@ -26,12 +26,13 @@ export const LeftSideContainer = styled.div`
     }
 
     span{
+        display: inline-block;
         position: relative;
         z-index: 10;
         font-style: italic;
     }
 
-    span::before{
+    span::after{
         content: "";
         position: absolute;    
         bottom: 10%;

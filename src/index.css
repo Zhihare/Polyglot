@@ -74,6 +74,7 @@ body {
   margin: 0 auto;
   padding: 20px 64px;
   max-width: 1440px;
+  background-color: #F8F8F8;
   font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

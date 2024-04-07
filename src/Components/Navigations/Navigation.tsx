@@ -3,26 +3,38 @@ import { NavigationNav } from './Navigation.styled';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../hooks/auth';
 
-export const Navigator = () => {
+interface NavigatorProps {
+    toggleMenu?: () => void;
+}
+
+
+export const Navigator = ({ toggleMenu }: NavigatorProps) => {
 
   const { isAuth } = useAuth();
 
+
+   const handleButtonClick = () => {
+     if (toggleMenu) {
+            toggleMenu();
+        }
+  };
+
   return (
     <NavigationNav>
-		  <NavLink className={({isActive}) =>
+		  <NavLink onClick={handleButtonClick} className={({isActive}) =>
 			  [
 				isActive ? "active" : "",
 			  ].join(" ")} to="/">
         Home
       </NavLink>
-      <NavLink className={({isActive}) =>
+      <NavLink  onClick={handleButtonClick} className={({isActive}) =>
 			  [
 				isActive ? "active" : "",
 			  ].join(" ")}  to="/teachers">
         Teachers
       </NavLink>
       {isAuth && (
-        <NavLink className={({ isActive }) =>
+        <NavLink onClick={handleButtonClick} className={({ isActive }) =>
           [
             isActive ? "active" : "",
           ].join(" ")} to="/favorites">

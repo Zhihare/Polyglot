@@ -2,7 +2,7 @@ import './App.css';
 import { lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Loader from './Components/Loader/LoaderContent';
-
+import { ToastContainer} from 'react-toastify';
 
 
 
@@ -28,7 +28,18 @@ function App() {
           </Route>
         </Routes>
       </Suspense>
-    </>
+       <ToastContainer
+      position="top-left"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"/>
+      </>
   );
 }
 

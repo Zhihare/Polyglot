@@ -24,6 +24,7 @@ const BurgerMenu = () => {
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
+        console.log(isOpen);
     };
 
     return (
@@ -34,8 +35,8 @@ const BurgerMenu = () => {
             {isOpen && (
                 <BurgerMenuModal ref={menuRef}>
                     <ul className="burger-menu__list">
-                        <Navigator />
-                        <HeaderButton />
+                        <Navigator toggleMenu={toggleMenu} />
+                        <HeaderButton toggleMenu={toggleMenu}/>
                     </ul>
                 </BurgerMenuModal>
             )}

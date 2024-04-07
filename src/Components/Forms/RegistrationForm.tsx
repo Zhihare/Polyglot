@@ -1,109 +1,115 @@
-import React, { useState } from 'react'
-import { ButtonFormContainer, ButtonModalContainer, LoginRegistrationForm, Modal, StyledPopup } from './LoginForm.styled';
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import React, { useState } from 'react';
+import { ButtonFormContainer, ButtonModalContainer, Modal, StyledPopup } from './LoginForm.styled';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../Redax/store';
 import { setUser } from '../../Redax/Auth/authSlice';
 import { useNavigate } from 'react-router-dom';
+import { AppDispatch } from '../../Redax/store';
+import { InformContainer } from '../BookTrial/BookTrialLessons.styled';
+import { toast } from 'react-toastify';
+ import 'react-toastify/dist/ReactToastify.css';
 
-type Props = {}
+const RegistrationForm: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
+  const auth = getAuth();
 
-const RegistrationForm: React.FC = (props: Props) => {
-    const dispatch: AppDispatch = useDispatch();
-    const navigate = useNavigate();
-     const auth = getAuth();
-    
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const closeModal = () => setOpen(false);
 
+  const initialValues = {
+    name: '',
+    email: '',
+    password: ''
+  };
 
-    const closeModal = () => setOpen(false);
-   
+  const validationSchema = Yup.object({
+    name: Yup.string().required('Name is required'),
+    email: Yup.string().email('Invalid email address').required('Email is required'),
+    password: Yup.string().required('Password is required').min(6, 'Password must be at least 6 characters')
+  });
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = (values: any) => {
+    const { name, email, password } = values;
     createUserWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
-        user.getIdToken()
-            .then(accessToken => {
-                dispatch(setUser({
-                    id: user.uid,
-                    email: user.email,
-                    name: user.displayName, // Ensure displayName is correctly set
-                    token: accessToken, 
-                }))
-                updateProfile(user, {
-      displayName: name 
-    })
-                navigate('/');
-                closeModal();
+        user.getIdToken().then((accessToken) => {
+          dispatch(
+            setUser({
+              id: user.uid,
+              email: user.email,
+              name: name, // Ensure displayName is correctly set
+              token: accessToken
             })
-            .catch(() => {" Invalid user"});
+          );
+          updateProfile(user, {
+            displayName: name
+          });
+          navigate('/');
+          closeModal();
+        });
       })
-        
-     .catch(() => {" Invalid user"});
-};
+      .catch(() => {
+         toast.error('Invalid user!', {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+      });
+  };
 
-
-      
   return (
-       <ButtonFormContainer>
-      <button type="button" className="button registration" onClick={() => setOpen(o => !o)}>
+    <ButtonFormContainer>
+      <button type="button" className="button registration" onClick={() => setOpen((o) => !o)}>
         Registration
       </button>
       <StyledPopup open={open} closeOnDocumentClick onClose={closeModal}>
         <Modal className="modal">
           <button className="close" onClick={closeModal}>
-            &times;</button>
+            &times;
+          </button>
           <div>
             <h2>Registration</h2>
-                      <p>Thank you for your interest in our platform! In order to register, we need some information.
-                          Please provide us with the following information</p>
-                      <LoginRegistrationForm onSubmit={handleSubmit}>
-                          
-                <div>
-                <label htmlFor="name">Name</label>
-                    <input
-                        type="name"
-                        id="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                    />
+            <p>
+              Thank you for your interest in our platform! In order to register, we need some information. Please provide
+              us with the following information.
+            </p>
+            <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+              <Form>
+                <InformContainer>
+                  <div>
+                  
+                  <Field type="text" id="name" name="name" placeholder="Enter your name" />
+                  <ErrorMessage name="name" component="div" className="error" />
                 </div>
                 <div>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
+                  
+                  <Field type="email" id="email" name="email" placeholder="Enter your email" />
+                  <ErrorMessage name="email" component="div" className="error" />
                 </div>
                 <div>
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                          </div>
-                          <ButtonModalContainer>
-                              <button type="submit">Sign Up</button>
-                          </ButtonModalContainer>
-                
-            </LoginRegistrationForm>
-        </div>
+                  
+                  <Field type="password" id="password" name="password" placeholder="Enter your password" />
+                  <ErrorMessage name="password" component="div" className="error" />
+                </div>
+                </InformContainer>
+                <ButtonModalContainer>
+                  <button type="submit">Sign Up</button>
+                </ButtonModalContainer>
+              </Form>
+            </Formik>
+          </div>
         </Modal>
       </StyledPopup>
     </ButtonFormContainer>
-    )
-}
+  );
+};
 
-
-export default RegistrationForm
+export default RegistrationForm;

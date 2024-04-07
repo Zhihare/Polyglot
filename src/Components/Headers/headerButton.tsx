@@ -10,11 +10,13 @@ import RegistrationForm from '../Forms/RegistrationForm';
 
 import { CiLogout } from "react-icons/ci";
 
+interface HeaderButtonProps {
+    toggleMenu?: () => void;
+}
 
-type Props = {}
 
-const HeaderButton = (props: Props) => {
-const dispatch: AppDispatch = useDispatch();
+const HeaderButton = ({ toggleMenu }: HeaderButtonProps) => {
+	const dispatch: AppDispatch = useDispatch();
 	const { isAuth, name, email } = useAuth();
 
 	const handleLogOur = () => {
@@ -32,8 +34,8 @@ const dispatch: AppDispatch = useDispatch();
 
 						</>:
 					<>
-					<LoginForm/>
-					<RegistrationForm />
+				  	<LoginForm toggleMenu={toggleMenu}/>
+					<RegistrationForm/>
 					</>
 				}
 				</NavigationButton>

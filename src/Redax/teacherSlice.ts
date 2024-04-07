@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { getFilterTeachers, getTeachersList, getTeachersListPag } from './teachersThank';
+import { getFilterTeachers, getTeachersListPag } from './teachersThank';
 
 
 
@@ -9,7 +9,7 @@ export interface TeachersState {
     favorites: any[];
   	isLoading: boolean;
   	error: string | null;
-  	filter: string| null;
+  	filter: any[];
     loadpage: number;
     modal: boolean;
     modalData: any
@@ -20,10 +20,10 @@ const initialState: TeachersState = {
     teachers: [],
     favorites: [],
 
-	isLoading: true,
+	isLoading: false,
 	error: null,
 
-	filter: null,
+	filter: [],
 	loadpage: 2,
 
 	modal: false,
@@ -46,11 +46,13 @@ const teachersSlice = createSlice({
 		addFavorites(state, action) {
 			state.favorites.push(action.payload);
 		},
+
 		removeFavorites(state, action) {
 			state.favorites = state.favorites.filter(
-				car => car.id !== action.payload
+				teacher => teacher.lesson_info !== action.payload
 			);
-        },
+		},
+		
 		setFavorites(state, action) {
 			state.favorites = action.payload;
 		},
@@ -86,13 +88,6 @@ const teachersSlice = createSlice({
 				state.error = null;
 				state.teachers = state.teachers.concat(action.payload);
 			})
-
-			.addCase(getTeachersList.fulfilled, (state, action) => {
-				state.isLoading = false;
-				state.error = null;
-				state.teachers = action.payload;
-			})
-
 			.addCase(getFilterTeachers.fulfilled, (state, action) => {
 				state.isLoading = false;
 				state.error = null;
@@ -102,15 +97,13 @@ const teachersSlice = createSlice({
 			.addMatcher(
 				isAnyOf(
 					getFilterTeachers.pending,
-					getTeachersList.pending,
 					getFilterTeachers.pending,
 				), state => {
-					state.isLoading = true;
+					state.isLoading = false;
 				})
 			.addMatcher(
 				isAnyOf(
 					getFilterTeachers.rejected,
-					getTeachersList.rejected,
 					getFilterTeachers.rejected,
 				), (state:any, action) => {
 					state.isLoading = false;

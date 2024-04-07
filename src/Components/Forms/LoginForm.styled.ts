@@ -57,7 +57,8 @@ export const StyledPopup = styled(Popup)`
 
 
   &-overlay {
-  
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
   }
 @media(max-width: 700px){
   &-content {
@@ -79,14 +80,15 @@ export const StyledPopup = styled(Popup)`
 export const Modal = styled.div`
         padding: 64px;
         position: relative;
- overflow-y: scroll;
+        border-radius: 30px;
+        background-color: #ffffff;
+
         button.close{
                 position: absolute;
                 display: flex;
                 text-align: center;
-                top: 0;
-                right: 0;
-                transform: translate(-50%, 0);
+                top: 20px;
+                right: 30px;
                 padding: 8px;
                 width: 32px;
                 height: 32px;
@@ -116,6 +118,14 @@ export const Modal = styled.div`
             letter-spacing: -2%;
             margin-bottom: 40px;
         }
+
+        p.bookTrialDesc{
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 22px;
+            color: #121417CC;
+            margin-bottom: 20px;
+        }
        
 `
 
@@ -142,18 +152,7 @@ export const LoginRegistrationForm = styled.form`
         border: 1px solid rgba(18, 20, 23, 0.1);
         border-radius: 12px;
        }
-       input#name{
-        padding-left: 60px;
-          }
-
-        input#email{
-        padding-left: 62px;
-          }
-
-        input#password{
-        padding-left: 82px;
-          }
-
+      
        label{
         position: absolute;
         top: 35%;
