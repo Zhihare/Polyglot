@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import Select from 'react-select';
-import { FilterForm, FilterFormButton, SelectFilter } from './Filter.styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { FilterForm, FilterFormButton } from './Filter.styled';
+import { useDispatch} from 'react-redux';
 import { customStylesBrand, customStylesPrice } from './styleSelect';
 import { createArrayWithStep, languageLevels, languages } from './optionSelect';
 import { AppDispatch } from '../../Redax/store';
-import { getFilterTeachers, getTeachersListPag } from '../../Redax/teachersThank';
-import { selectTeachers } from '../../Redax/teacherSelector';
-import { setFilter, setLoadpage, setTeachers } from '../../Redax/teacherSlice';
+import { getFilterTeachers } from '../../Redax/teachersThank';
+import { setFilter, setLoadpage} from '../../Redax/teacherSlice';
 
 
-// { cars, setFilter }
 const FilterTeachers = () => {
    const dispatch: AppDispatch = useDispatch();
 
@@ -18,17 +16,9 @@ const FilterTeachers = () => {
 	const [price, setPrice] = useState(10000);
 	const [level, setLevel] = useState('');
 
-    const teachers = useSelector(selectTeachers);
     const prices = createArrayWithStep();
 
-        
-
-
-
-	// const handleCustomInputChange = (e:any, setInput:any) => {
-	// 	setInput(e.target.value);
-
-	// };
+    
 
 	const handleSubmit = (e:any) => {
         e.preventDefault();
