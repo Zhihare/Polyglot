@@ -25,12 +25,12 @@ This project is a web application for online language learning. It consists of t
 
 
 ### Technologies Used
-**Firebase:** User authentication, data storage, and real-time database functionalities.
-**React.js:** Creation of the user interface and interaction with Firebase.
-**React Router:** Navigation between different pages of the application.
-**TypeScript:** Implementation of the project using typed JavaScript.
-**Formik & Yup:** Creation and validation of login and registration forms.
-**Google OAuth:** Ability to log in via Google account for user convenience.
+- **Firebase:** User authentication, data storage, and real-time database functionalities.
+- **React.js:** Creation of the user interface and interaction with Firebase.
+- **React Router:** Navigation between different pages of the application.
+- **TypeScript:** Implementation of the project using typed JavaScript.
+- **Formik & Yup:** Creation and validation of login and registration forms.
+- **Google OAuth:** Ability to log in via Google account for user convenience.
 
 
 ## GitHub Repository
