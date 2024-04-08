@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ButtonFormContainer, ButtonModalContainer, Modal, StyledPopup } from './LoginForm.styled';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../Redax/Auth/authSlice';
-import { useNavigate } from 'react-router-dom';
 import { AppDispatch } from '../../Redax/store';
 import GoogleAuth from '../googleAuth/googleAuth';
 import { CiLogin } from 'react-icons/ci';
@@ -19,10 +18,22 @@ interface LoginProps {
 
 const LoginForm: React.FC<LoginProps> = ({ toggleMenu }: LoginProps) => {
   const dispatch: AppDispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
-  const closeModal = () => setOpen(false);
+  const closeModal = () => {
+    setOpen(false);
+    document.body.style.overflow = 'unset';
+  }
+
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+   }, [open]);
+  
+  
 
   const initialValues = {
     email: '',
@@ -49,35 +60,16 @@ const LoginForm: React.FC<LoginProps> = ({ toggleMenu }: LoginProps) => {
                 token: accessToken
               })
             );
-            navigate('/');
             closeModal();
           })
           .catch(() => {
-             toast.error('Invalid user!', {
-            position: "top-left",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            });;
+             toast.error('Invalid user!');
           });
       })
       .catch(() => {
-         toast.error('Invalid user!', {
-            position: "top-left",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            });;
+         toast.error('Invalid user!');
       });
-  };
+};
 
   return (
     <ButtonFormContainer>
@@ -107,7 +99,7 @@ const LoginForm: React.FC<LoginProps> = ({ toggleMenu }: LoginProps) => {
                   </InformContainer>  
                 <ButtonModalContainer>
                   <button type="submit">Log In</button>
-                  <GoogleAuth />
+                  <GoogleAuth closeModal={closeModal}/>
                 </ButtonModalContainer>
               </Form>
             </Formik>

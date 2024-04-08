@@ -5,25 +5,28 @@ import { AppDispatch } from '../../Redax/store';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../Redax/Auth/authSlice';
 
-type Props = {}
+interface Props {
+  closeModal: () => void;
+}
 
-const GoogleAuth = (props: Props) => {
+const GoogleAuth: React.FC<Props> = ({ closeModal }: Props) => {
      const dispatch: AppDispatch = useDispatch();
     const auth = getAuth();
 
     const loginGoogle = () => {
 
-        signInWithPopup(auth, provider)
-            .then((result) => {
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const user = result.user;
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const user = result.user;
               
-                dispatch(setUser({
-                    id: user.uid,
-                    email: user.email,
-                    name: user.displayName, // Ensure displayName is correctly set
-                    token: credential?.accessToken 
-                }))
+          dispatch(setUser({
+            id: user.uid,
+            email: user.email,
+            name: user.displayName,
+            token: credential?.accessToken
+          }));
+          closeModal(); 
 
             }).catch(() => {" Invalid user"});
                

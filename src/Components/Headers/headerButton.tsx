@@ -9,6 +9,8 @@ import LoginForm from '../Forms/LoginForm';
 import RegistrationForm from '../Forms/RegistrationForm';
 
 import { CiLogout } from "react-icons/ci";
+import { useNavigate } from 'react-router-dom';
+import { setFavorites } from '../../Redax/teacherSlice';
 
 interface HeaderButtonProps {
     toggleMenu?: () => void;
@@ -18,9 +20,11 @@ interface HeaderButtonProps {
 const HeaderButton = ({ toggleMenu }: HeaderButtonProps) => {
 	const dispatch: AppDispatch = useDispatch();
 	const { isAuth, name, email } = useAuth();
+	const navigate = useNavigate();
 
 	const handleLogOur = () => {
 		dispatch(deleteUser());
+		navigate('/');
 	}
 
   return (

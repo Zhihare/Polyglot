@@ -30,19 +30,10 @@ const ModalForm: React.FC<ModalProps> = ({ showModal, closeModal, personName, pe
   });
 
   const handleSubmit = (values: any) => {
-      console.log(values);
       closeModal();
-      toast.success('You will be contacted shortly!', {
-            position: "top-left",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            });
-            };
+      toast.success('You will be contacted shortly!');
+  };
+
 
  useEffect(() => {
   const handleKeyPress = (e: KeyboardEvent) => {
@@ -59,6 +50,8 @@ const ModalForm: React.FC<ModalProps> = ({ showModal, closeModal, personName, pe
   }
 }, [showModal, closeModal]);
 
+  
+  
   return (
     <StyledPopup open={showModal} onClose={closeModal} closeOnDocumentClick>
       <Modal>

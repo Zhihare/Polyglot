@@ -7,7 +7,7 @@ import HeaderButton from '../Headers/headerButton';
 
 const BurgerMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const menuRef = useRef<HTMLDivElement>(null); // Встановлюємо правильний тип для menuRef
+    const menuRef = useRef<HTMLDivElement>(null);
     
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -24,7 +24,6 @@ const BurgerMenu = () => {
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
-        console.log(isOpen);
     };
 
     return (

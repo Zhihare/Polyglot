@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ButtonFormContainer, ButtonModalContainer, Modal, StyledPopup } from './LoginForm.styled';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../Redax/Auth/authSlice';
-import { useNavigate } from 'react-router-dom';
 import { AppDispatch } from '../../Redax/store';
 import { InformContainer } from '../BookTrial/BookTrialLessons.styled';
 import { toast } from 'react-toastify';
@@ -13,11 +12,14 @@ import { toast } from 'react-toastify';
 
 const RegistrationForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const navigate = useNavigate();
   const auth = getAuth();
 
   const [open, setOpen] = useState(false);
-  const closeModal = () => setOpen(false);
+
+  const closeModal = () => {
+    setOpen(false);
+    document.body.style.overflow = 'unset';
+  }
 
   const initialValues = {
     name: '',
@@ -25,6 +27,16 @@ const RegistrationForm: React.FC = () => {
     password: ''
   };
 
+
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+   }, [open]);
+
+  
   const validationSchema = Yup.object({
     name: Yup.string().required('Name is required'),
     email: Yup.string().email('Invalid email address').required('Email is required'),
@@ -40,28 +52,18 @@ const RegistrationForm: React.FC = () => {
             setUser({
               id: user.uid,
               email: user.email,
-              name: name, // Ensure displayName is correctly set
+              name: name,
               token: accessToken
             })
           );
           updateProfile(user, {
             displayName: name
           });
-          navigate('/');
           closeModal();
         });
       })
       .catch(() => {
-         toast.error('Invalid user!', {
-            position: "top-left",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            });
+         toast.error('Invalid user!');
       });
   };
 

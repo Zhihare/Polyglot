@@ -15,9 +15,6 @@ gap: 18px;
 `
 
 
-
-
-
 export const InformContainer = styled.div`
         display: flex;
         flex-direction: column;

@@ -34,21 +34,17 @@ const Card = ({ teacher }: Props) => {
 
 
     const handleOpenModal = () => {
-        isAuth ? setShowModal(true):
-         toast.error('Please register first', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light"
-    });
-     };
-
+    if (isAuth) {
+        setShowModal(true);
+        document.body.style.overflow = 'hidden';
+    } else {
+        toast.error('Please register first');
+    }
+};
+    
     const handleCloseModal = () => {
-    setShowModal(false);
+        setShowModal(false);
+        document.body.style.overflow = 'unset';
     };
 
 
@@ -67,16 +63,7 @@ const Card = ({ teacher }: Props) => {
             dispatch(addFavorites(teacher)) && setActionFavorite(true) :
             dispatch(removeFavorites(lesson_info)) && setActionFavorite(false)
     ) :
-    toast.error('Please register first', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light"
-    });
+    toast.error('Please register first');
 };
 
     return (

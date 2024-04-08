@@ -6,26 +6,36 @@ import { customStylesBrand, customStylesPrice } from './styleSelect';
 import { createArrayWithStep, languageLevels, languages } from './optionSelect';
 import { AppDispatch } from '../../Redax/store';
 import { getFilterTeachers } from '../../Redax/teachersThank';
-import { setFilter, setLoadpage} from '../../Redax/teacherSlice';
+import { setFilter, setIsLoading, setLoadpage} from '../../Redax/teacherSlice';
+
+type Props = {
+    data: (data: { language: string, level: string, price: number, pageNumber: number }) => void;
+}
 
 
-const FilterTeachers = () => {
+const FilterTeachers = (prop:Props) => {
    const dispatch: AppDispatch = useDispatch();
 
 	const [language, setLanguage] = useState('');
 	const [price, setPrice] = useState(10000);
 	const [level, setLevel] = useState('');
+	
 
     const prices = createArrayWithStep();
 
-    
 
-	const handleSubmit = (e:any) => {
-        e.preventDefault();
-		dispatch(setLoadpage(2));
-		dispatch(setFilter([]));
-        dispatch(getFilterTeachers({ language, level, price }));
-	};
+	const handleSubmit = (e: any) => {
+	const pageNumber = 1;
+    e.preventDefault();
+    dispatch(setIsLoading(true));
+    dispatch(setLoadpage(2));
+    dispatch(setFilter([]));
+ 	
+	prop.data({ language, level, price, pageNumber });
+	
+		
+	dispatch(getFilterTeachers({ language, level, price, pageNumber }));
+};
 
 
 	return (

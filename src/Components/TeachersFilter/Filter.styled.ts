@@ -61,10 +61,10 @@ width: 125px;
 `
 
 export const FilterFormButton = styled.button`
-/* _ Main button */
+
 width: 136px;
 height: 48px;
-/* Auto layout */
+
 display: flex;
 flex-direction: row;
 justify-content: center;
@@ -81,7 +81,8 @@ font-weight: 600;
 line-height: 20px;
 
 
-&:hover{
+&:hover,
+&:focus{
 	background: var(--button-color-hover);
 }
 `

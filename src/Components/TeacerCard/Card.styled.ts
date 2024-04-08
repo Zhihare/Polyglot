@@ -59,9 +59,14 @@ p.readMore{
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
+    width: fit-content;
 
     text-decoration: underline;
     cursor: pointer;
+}
+
+p.readMore:hover{
+    color: var(--button-color-hover);
 }
 `
 

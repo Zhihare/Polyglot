@@ -1,31 +1,29 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { db } from '../firebase/conect';
 import { ref, get } from 'firebase/database';
+import { toast } from 'react-toastify';
+ import 'react-toastify/dist/ReactToastify.css';
 
 
 
 export const getTeachersListPag = createAsyncThunk(
-	"teachers/fetchAll",
-	 async (pageNumber: number) => {
+    "teachers/fetchAll",
+    async (pageNumber: number) => {
         try {
-            const pageSize = 4; 
-            const start = (pageNumber - 1) * pageSize; 
-            const end = start + pageSize; 
+            const pageSize = 4;
+            const start = (pageNumber - 1) * pageSize;
+            const end = start + pageSize;
             const snapshot = await get(ref(db, 'teachers'));
-            if (snapshot.exists()) {
-                const snapshotVal = snapshot.val();
-                if (snapshotVal !== null) {
-                    const data = Object.values(snapshotVal);
-					const itemsToLoad = data.slice(start, end); 
-					return itemsToLoad;
-                } else {
-					return [];
-                }
-            } else {
-				return [];
-            }
-        } catch (error) {
-			return [];
+            const snapshotVal = snapshot.val();
+            const data = snapshotVal ? Object.values(snapshotVal) : [];
+
+            return [
+                data.slice(start, end),
+                Math.ceil(data.length / 4)
+            ];
+		} catch (error) {
+			toast.error('Database not found');
+            return [[], 0];
         }
     }
 );
@@ -33,42 +31,45 @@ export const getTeachersListPag = createAsyncThunk(
 
 
 export const getFilterTeachers = createAsyncThunk(
-	"teachers/make",
-	async ({ language, level, price }: { language: string, level: string, price: number }) => {
-		try {
-			const snapshot = await get(ref(db, 'teachers'));
-			if (snapshot.exists()) {
-				const snapshotVal = snapshot.val();
-				if (snapshotVal !== null) {
-					const data = Object.values(snapshotVal);
-					const filteredData = data.filter((teacher: any) => {
-						const languageMatch = !language || teacher.languages.includes(language);
-						const levelMatch = !level || teacher.levels.includes(level);
-						const priceMatch = !price || teacher.price_per_hour <= price;
+    "teachers/make",
+    async ({ language, level, price, pageNumber }: { language: string; level: string; price: number; pageNumber: number }) => {
+        try {
+            const pageSize = 4;
+            const start = (pageNumber - 1) * pageSize;
+            const end = start + pageSize;
 
-						return languageMatch && levelMatch && priceMatch;
-					});
+           const snapshot = await get(ref(db, 'teachers'));
+            if (!snapshot.exists()) {
+                toast.error('Database not found');
+                return [[], 0];
+            }
+            
+            const snapshotVal = snapshot.val();
+            if (snapshotVal === null) {
+                toast.error('Database not found');
+                return [[], 0];
+            }
+            
+            const data = Object.values(snapshotVal);
+            const filteredData = data.filter((teacher: any) => {
+                const languageMatch = !language || teacher.languages.includes(language);
+                const levelMatch = !level || teacher.levels.includes(level);
+                const priceMatch = !price || teacher.price_per_hour <= price;
 
-					return filteredData;
-				} else {
-					console.log('Data is null');
-					return [];
-				}
-			} else {
-				console.log('No data available');
-				return [];
-			}
-		} catch (error) {
-			console.error('Error fetching data:', error);
-			throw error;
-		}
-	}
+                return languageMatch && levelMatch && priceMatch;
+            });
+            
+            if (filteredData.length === 0) {
+                toast.error('Sorry, nothing was found for your request.');
+                return [[], 0];
+            }
+            
+            const itemsToLoad = filteredData.slice(start, end); 
+            const totalPages = Math.ceil(filteredData.length / 4);
+            
+            return [itemsToLoad, totalPages];
+        } catch (error) {
+            throw error;
+        }
+    }
 );
-	// async (make, thunkAPI) => {
-	// 	try {
-	// 		const response = await axios.get(`cars?make=${make}`);
-	// 		return response.data;
-	// 	} catch (e:any) {
-	// 		return thunkAPI.rejectWithValue(e.message);
-	// 	}
-	// }

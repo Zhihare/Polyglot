@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import FilterTeachers from '../../Components/TeachersFilter/Filter'
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFilter, selectLoadPage, selectLoading, selectTeachers } from '../../Redax/teacherSelector';
+import { selectFilter, selectLoadPage, selectLoading, selectMaxPage, selectTeachers } from '../../Redax/teacherSelector';
 import Card from '../../Components/TeacerCard/Card';
 import { AppDispatch } from '../../Redax/store';
 import { setIsLoading, setLoadpage, setTeachers } from '../../Redax/teacherSlice';
-import { getTeachersListPag } from '../../Redax/teachersThank';
+import { getFilterTeachers, getTeachersListPag } from '../../Redax/teachersThank';
 import { LoadMoreButton, Margin } from '../../Components/TeacerCard/Card.styled';
 import Loader from '../../Components/Loader/LoaderContent';
 import { CardListInform, CardListNothing } from './TeachersPage.styled';
@@ -13,6 +13,12 @@ import { CardListInform, CardListNothing } from './TeachersPage.styled';
 
 type Props = {}
 
+export type FilterData = {
+    language: string;
+    level: string;
+    price: number;
+    pageNumber: number;
+};
 
 const TeachersPage = (props: Props) => {
   const dispatch: AppDispatch = useDispatch();
@@ -20,9 +26,11 @@ const TeachersPage = (props: Props) => {
   const filter = useSelector(selectFilter);
   const loadMorePage = useSelector(selectLoadPage);
   const isLoader = useSelector(selectLoading);
+  const maxPage = useSelector(selectMaxPage);
+  const [dataFilter, setDataFilter] = useState({language: '', level: '', price: 10000, pageNumber: 1});
 
   useEffect(() => {
-  dispatch(setTeachers([]));
+    dispatch(setTeachers([]));
   }, [dispatch]);
 
   useEffect(() => {
@@ -30,23 +38,36 @@ const TeachersPage = (props: Props) => {
      	dispatch(setIsLoading(true));
 			dispatch(getTeachersListPag(1));
 		}
-	}, [dispatch, teachers]);
+  }, [dispatch, teachers]);
+  
+    useEffect(() => {
+        setDataFilter((prevDataFilter) => ({ ...prevDataFilter, pageNumber: loadMorePage }));
+    }, [loadMorePage]);
+ 
+    const handleFilterData = (data: FilterData) => {
+       setDataFilter({...data, pageNumber: loadMorePage });
+    }
+  
 
 
 	const teachersArray = filter.length === 0 ? teachers : filter;
 
+
   const loadMore = () => {
-		dispatch(setIsLoading(true));
-		dispatch(setLoadpage(loadMorePage + 1));
-    dispatch(getTeachersListPag(loadMorePage));
-	};
+    dispatch(setIsLoading(true));
+    dispatch(setLoadpage(loadMorePage + 1));
+    if (filter.length > 0) {
+      dispatch(getFilterTeachers(dataFilter))
+    } else {
+      dispatch(getTeachersListPag(loadMorePage));
+    };
+  }
 
 
 
   return (
-    <>
-      
-    <FilterTeachers />
+    <> 
+      <FilterTeachers data={handleFilterData} />
     {teachersArray.length !== 0 ?
 				<CardListInform>
 					{teachersArray.map(e => (
@@ -57,7 +78,7 @@ const TeachersPage = (props: Props) => {
       }
 
       {isLoader? <Loader /> : null}
-      {(filter.length !== 0) || (teachers.length !==0) ?
+      {(loadMorePage-1 < maxPage)?
         <LoadMoreButton onClick={loadMore} >Load more</LoadMoreButton> :
         <Margin />}
       </>

@@ -10,7 +10,8 @@ export interface TeachersState {
   	isLoading: boolean;
   	error: string | null;
   	filter: any[];
-    loadpage: number;
+	loadpage: number;
+	maxPage: number;
     modal: boolean;
     modalData: any
 }
@@ -25,6 +26,7 @@ const initialState: TeachersState = {
 
 	filter: [],
 	loadpage: 2,
+	maxPage: 1,
 
 	modal: false,
 	modalData: null,
@@ -62,6 +64,10 @@ const teachersSlice = createSlice({
 			state.loadpage = action.payload;
 		},
 
+		setMaxPage(state, action) {
+			state.maxPage = action.payload;
+		},
+
 
 		setFilter(state, action) {
 			state.filter = action.payload;
@@ -83,15 +89,17 @@ const teachersSlice = createSlice({
 
 	extraReducers: builder => {
 		builder
-			.addCase(getTeachersListPag.fulfilled, (state, action) => {
+			.addCase(getTeachersListPag.fulfilled, (state, action: any) => {
 				state.isLoading = false;
 				state.error = null;
-				state.teachers = state.teachers.concat(action.payload);
+				state.teachers = state.teachers.concat(action.payload[0]);
+				state.maxPage = action.payload[1]; 
 			})
-			.addCase(getFilterTeachers.fulfilled, (state, action) => {
+			.addCase(getFilterTeachers.fulfilled, (state, action: any) => {
 				state.isLoading = false;
 				state.error = null;
-				state.filter = action.payload;
+				state.filter = state.filter.concat(action.payload[0]);
+				state.maxPage = action.payload[1]; 
 			})
 
 			.addMatcher(

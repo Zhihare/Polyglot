@@ -5,7 +5,6 @@ export const languages = [
   { value: 'German', label: 'German' },
   { value: 'Chinese', label: 'Chinese' },
   { value: 'Arabic', label: 'Arabic' },
-  { value: 'Russian', label: 'Russian' },
   { value: 'Portuguese', label: 'Portuguese' },
   { value: 'Japanese', label: 'Japanese' },
   { value: 'Italian', label: 'Italian' },
@@ -33,12 +32,12 @@ export const languages = [
 
 
 export const languageLevels = [
-  { value: "A1", label: "A1 Beginner" },
-  { value: "A2", label: "A2 Elementary" },
-  { value: "B1", label: "B1 Intermediate" },
-  { value: "B2", label: "B2 Upper-Intermediate" },
-  { value: "C1", label: "C1 Advanced" },
-  { value: "C2", label: "C2 Proficient" }
+  { value: "A1 Beginner", label: "A1 Beginner" },
+  { value: "A2 Elementary", label: "A2 Elementary" },
+  { value: "B1 Intermediate", label: "B1 Intermediate" },
+  { value: "B2 Upper-Intermediate", label: "B2 Upper-Intermediate" },
+  { value: "C1 Advanced", label: "C1 Advanced" },
+  { value: "C2 Proficient", label: "C2 Proficient" }
 ];
 
 export const createArrayWithStep = () => {

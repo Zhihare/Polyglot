@@ -12,9 +12,15 @@ export const NavigationNav = styled.nav`
 			padding: 6px;
 			border-bottom: 2px solid transparent;
 	}
+
+	a:hover,
+	a:focus{
+		color: var(--button-color);
+	}
+
 	.active{
-		color: blue;
-		border-color: blue;		
+		color: var(--button-color);
+		border-color: var(--button-color);		
 	}
 
 	@media(max-width: 700px){

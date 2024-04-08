@@ -11,7 +11,7 @@ export const selectModalData = (state: RootState) => state.teachers.modalData;
 
 export const selectLoading = (state: RootState) => state.teachers.isLoading;
 export const selectLoadPage = (state: RootState) => state.teachers.loadpage;
-
+export const selectMaxPage = (state: RootState) => state.teachers.maxPage;
 
 
 
