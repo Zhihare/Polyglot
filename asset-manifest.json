@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Polyglot/static/css/main.ea7a2c4a.css",
+    "main.css": "/Polyglot/static/css/main.8a04b556.css",
     "main.js": "/Polyglot/static/js/main.40b1585b.js",
     "static/js/412.5f11a0a3.chunk.js": "/Polyglot/static/js/412.5f11a0a3.chunk.js",
     "static/js/634.9077e8ed.chunk.js": "/Polyglot/static/js/634.9077e8ed.chunk.js",
@@ -16,7 +16,7 @@
     "static/media/1681895305_kartinki-pibig-info-p-kartinki-dlya-profilya-arti-instagram-4.jpg": "/Polyglot/static/media/1681895305_kartinki-pibig-info-p-kartinki-dlya-profilya-arti-instagram-4.af769ab6edba83422336.jpg",
     "static/media/icon.svg": "/Polyglot/static/media/icon.2c4587a8608e1266cd7e3d0b776fec7b.svg",
     "index.html": "/Polyglot/index.html",
-    "main.ea7a2c4a.css.map": "/Polyglot/static/css/main.ea7a2c4a.css.map",
+    "main.8a04b556.css.map": "/Polyglot/static/css/main.8a04b556.css.map",
     "main.40b1585b.js.map": "/Polyglot/static/js/main.40b1585b.js.map",
     "412.5f11a0a3.chunk.js.map": "/Polyglot/static/js/412.5f11a0a3.chunk.js.map",
     "634.9077e8ed.chunk.js.map": "/Polyglot/static/js/634.9077e8ed.chunk.js.map",
@@ -30,7 +30,7 @@
     "453.efa959c0.chunk.js.map": "/Polyglot/static/js/453.efa959c0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ea7a2c4a.css",
+    "static/css/main.8a04b556.css",
     "static/js/main.40b1585b.js"
   ]
 }
