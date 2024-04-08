@@ -10,7 +10,6 @@ import RegistrationForm from '../Forms/RegistrationForm';
 
 import { CiLogout } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom';
-import { setFavorites } from '../../Redax/teacherSlice';
 
 interface HeaderButtonProps {
     toggleMenu?: () => void;
