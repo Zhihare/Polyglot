@@ -88,11 +88,6 @@ button{
 cursor: pointer;
 }
 
-button:hover,
-button:focus {
-  background-color: var(--button-color-hover);
-}
-
 a{
   cursor: pointer;
 }
