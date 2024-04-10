@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/Polyglot/static/css/main.8a04b556.css",
-    "main.js": "/Polyglot/static/js/main.6627fc3a.js",
+    "main.js": "/Polyglot/static/js/main.0165bd92.js",
     "static/js/412.5f11a0a3.chunk.js": "/Polyglot/static/js/412.5f11a0a3.chunk.js",
     "static/js/634.9077e8ed.chunk.js": "/Polyglot/static/js/634.9077e8ed.chunk.js",
-    "static/js/222.eb234e8f.chunk.js": "/Polyglot/static/js/222.eb234e8f.chunk.js",
+    "static/js/222.4f32bde9.chunk.js": "/Polyglot/static/js/222.4f32bde9.chunk.js",
     "static/js/993.2f3842b4.chunk.js": "/Polyglot/static/js/993.2f3842b4.chunk.js",
     "static/js/834.ca94d163.chunk.js": "/Polyglot/static/js/834.ca94d163.chunk.js",
     "static/js/56.3c362f42.chunk.js": "/Polyglot/static/js/56.3c362f42.chunk.js",
@@ -17,10 +17,10 @@
     "static/media/icon.svg": "/Polyglot/static/media/icon.2c4587a8608e1266cd7e3d0b776fec7b.svg",
     "index.html": "/Polyglot/index.html",
     "main.8a04b556.css.map": "/Polyglot/static/css/main.8a04b556.css.map",
-    "main.6627fc3a.js.map": "/Polyglot/static/js/main.6627fc3a.js.map",
+    "main.0165bd92.js.map": "/Polyglot/static/js/main.0165bd92.js.map",
     "412.5f11a0a3.chunk.js.map": "/Polyglot/static/js/412.5f11a0a3.chunk.js.map",
     "634.9077e8ed.chunk.js.map": "/Polyglot/static/js/634.9077e8ed.chunk.js.map",
-    "222.eb234e8f.chunk.js.map": "/Polyglot/static/js/222.eb234e8f.chunk.js.map",
+    "222.4f32bde9.chunk.js.map": "/Polyglot/static/js/222.4f32bde9.chunk.js.map",
     "993.2f3842b4.chunk.js.map": "/Polyglot/static/js/993.2f3842b4.chunk.js.map",
     "834.ca94d163.chunk.js.map": "/Polyglot/static/js/834.ca94d163.chunk.js.map",
     "56.3c362f42.chunk.js.map": "/Polyglot/static/js/56.3c362f42.chunk.js.map",
@@ -31,6 +31,6 @@
   },
   "entrypoints": [
     "static/css/main.8a04b556.css",
-    "static/js/main.6627fc3a.js"
+    "static/js/main.0165bd92.js"
   ]
 }
