@@ -27,16 +27,19 @@ const TeachersPage = (props: Props) => {
   const loadMorePage = useSelector(selectLoadPage);
   const isLoader = useSelector(selectLoading);
   const maxPage = useSelector(selectMaxPage);
-  const [dataFilter, setDataFilter] = useState({language: '', level: '', price: 10000, pageNumber: 1});
+  const [dataFilter, setDataFilter] = useState({ language: '', level: '', price: 10000, pageNumber: 1 });
+  const [dataCard, setDataCard] = useState(true);
 
   useEffect(() => {
-    dispatch(setTeachers([]));
-  }, [dispatch]);
+    if (dataCard) {
+      dispatch(setTeachers([]));
+    }
+  }, [dispatch, dataCard]);
 
   useEffect(() => {
-      if (teachers.length === 0) {
+    if (teachers.length === 0 && dataCard) {
      	dispatch(setIsLoading(true));
-			dispatch(getTeachersListPag(1));
+      dispatch(getTeachersListPag(1));
 		}
   }, [dispatch, teachers]);
   
@@ -44,13 +47,14 @@ const TeachersPage = (props: Props) => {
         setDataFilter((prevDataFilter) => ({ ...prevDataFilter, pageNumber: loadMorePage }));
     }, [loadMorePage]);
  
-    const handleFilterData = (data: FilterData) => {
-       setDataFilter({...data, pageNumber: loadMorePage });
+    const handleFilterData = (data: FilterData, dataCard: boolean) => {
+      setDataFilter({ ...data, pageNumber: loadMorePage });
+      setDataCard(dataCard);
     }
   
 
 
-	const teachersArray = filter.length === 0 ? teachers : filter;
+	const teachersArray = dataCard ? teachers : filter;
 
 
   const loadMore = () => {
@@ -78,7 +82,7 @@ const TeachersPage = (props: Props) => {
       }
 
       {isLoader? <Loader /> : null}
-      {(loadMorePage-1 < maxPage)?
+      {(loadMorePage-1 < maxPage && teachersArray.length !== 0)?
         <LoadMoreButton onClick={loadMore} >Load more</LoadMoreButton> :
         <Margin />}
       </>

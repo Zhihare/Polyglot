@@ -9,7 +9,7 @@ import { getFilterTeachers } from '../../Redax/teachersThank';
 import { setFilter, setIsLoading, setLoadpage} from '../../Redax/teacherSlice';
 
 type Props = {
-    data: (data: { language: string, level: string, price: number, pageNumber: number }) => void;
+    data: (data: { language: string, level: string, price: number, pageNumber: number }, dataCard: boolean) => void;
 }
 
 
@@ -29,9 +29,9 @@ const FilterTeachers = (prop:Props) => {
     e.preventDefault();
     dispatch(setIsLoading(true));
     dispatch(setLoadpage(2));
-    dispatch(setFilter([]));
+		dispatch(setFilter([]));
  	
-	prop.data({ language, level, price, pageNumber });
+	prop.data({ language, level, price, pageNumber }, false);
 	
 		
 	dispatch(getFilterTeachers({ language, level, price, pageNumber }));
