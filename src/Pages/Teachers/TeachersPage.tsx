@@ -41,7 +41,7 @@ const TeachersPage = (props: Props) => {
      	dispatch(setIsLoading(true));
       dispatch(getTeachersListPag(1));
 		}
-  }, [dispatch, teachers]);
+  }, [dispatch, teachers, dataCard]);
   
     useEffect(() => {
         setDataFilter((prevDataFilter) => ({ ...prevDataFilter, pageNumber: loadMorePage }));
