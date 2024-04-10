@@ -3,32 +3,31 @@ name: Build and deploy to GitHub Pages
 on:
   push:
     branches: [main]
+env:
+   REACT_APP_FB_APIKEY: ${{ secrets.REACT_APP_FB_APIKEY }}
+   REACT_APP_FB_AUTHDOMAIN: ${{ secrets.REACT_APP_FB_AUTHDOMAIN }}
+   REACT_APP_FB_DATABASE_URL: ${{ secrets.REACT_APP_FB_DATABASE_URL }}
+   REACT_APP_FB_PROJECT_ID: ${{ secrets.REACT_APP_FB_PROJECT_ID }}
+   REACT_APP_FB_MSIS: ${{ secrets.REACT_APP_FB_MSIS }}
+   REACT_APP_FB_APP_ID: ${{ secrets.REACT_APP_FB_APP_ID }}
+   REACT_APP_FB_MEASUREMENT_ID: ${{ secrets.REACT_APP_FB_MEASUREMENT_ID }}
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v3
 
-      - name: Install, lint, build 🔧
+      - name: Install, build 🔧
         run: |
           npm install
           npm run build
 
-      - name: Set environment variables
-        run: |
-          echo "REACT_APP_FB_APIKEY=${{secrets.REACT_APP_FB_APIKEY}}" >> $GITHUB_ENV
-          echo "REACT_APP_FB_APP_ID=${{secrets.REACT_APP_FB_APP_ID}}" >> $GITHUB_ENV
-          echo "REACT_APP_FB_AUTHDOMAIN=${{secrets.REACT_APP_FB_AUTHDOMAIN}}" >> $GITHUB_ENV
-          echo "REACT_APP_FB_DATABASE_URL=${{secrets.REACT_APP_FB_DATABASE_URL}}" >> $GITHUB_ENV
-          echo "REACT_APP_FB_MEASUREMENT_ID=${{secrets.REACT_APP_FB_MEASUREMENT_ID}}" >> $GITHUB_ENV
-          echo "REACT_APP_FB_MSIS=${{secrets.REACT_APP_FB_MSIS}}" >> $GITHUB_ENV
-          echo "REACT_APP_FB_PROJECT_ID=${{secrets.REACT_APP_FB_PROJECT_ID}}" >> $GITHUB_ENV
-          echo "REACT_APP_FB_STORAGE=${{secrets.REACT_APP_FB_STORAGE}}" >> $GITHUB_ENV
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           branch: gh-pages
           folder: build
+
